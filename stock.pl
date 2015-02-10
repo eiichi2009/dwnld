@@ -17,6 +17,7 @@ my $work_dir = "/home/eii/korean_stock/";
 my $company_list_table = "kr_company_list";
 my $stock_table = "kr_stock";
 my $database_name = "stock.db";
+my $quandl_auth_token;
 
 sub is_valid_business_day_kr
 {
@@ -208,7 +209,7 @@ sub get_kr_quandl
     if ($market eq "KOSDAQ") {
         $market_type = "KQ";
     }
-    my $uri = "http://www.quandl.com/api/v1/datasets/YAHOO/" . $market_type . "_" . $comp_code . ".csv" . "?auth_token=rFWC8jG8jN3cvF7XrVK2";
+    my $uri = "http://www.quandl.com/api/v1/datasets/YAHOO/" . $market_type . "_" . $comp_code . ".csv" . "?auth_token=$quandl_auth_token";
     my ($fh, $file) = File::Temp::tempfile(DIR => '/tmp', UNLINK => 1);
 
 #    `wget $uri -O $file`;
